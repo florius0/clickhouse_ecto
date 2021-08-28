@@ -125,6 +125,10 @@ defmodule ClickhouseEcto.Connection do
     SQL.all(query)
   end
 
+  def query(conn, statement, params \\ [], options \\ []) do
+    execute(conn, IO.iodata_to_binary(statement), params, options)
+  end
+
   def update_all(query, prefix \\ nil), do: SQL.update_all(query, prefix)
   @doc false
   def delete_all(query), do: SQL.delete_all(query)
