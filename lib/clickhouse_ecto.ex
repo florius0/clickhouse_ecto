@@ -28,6 +28,10 @@ defmodule ClickhouseEcto do
   ## Migration
   def supports_ddl_transaction?, do: Migration.supports_ddl_transaction?()
 
+  def lock_for_migrations(adapter_meta, options, fun) do
+    fun.()
+  end
+
   ## Storage
   @impl Ecto.Adapter.Storage
   def storage_up(opts), do: Storage.storage_up(opts)
